@@ -32,7 +32,7 @@ function AppContent() {
 
 export default function App() {
   return (
-    <Router>
+    <Router basename="/anita-winrow">
       <AppContent />
     </Router>
   );
