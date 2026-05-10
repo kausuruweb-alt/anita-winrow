@@ -14,12 +14,11 @@ function AppContent() {
     <div className="flex flex-col min-h-screen">
       <Header />
 
-      <main className={`flex-grow ${isHomePage ? "" : "md:pt-10"}`}>
+      <main className={`flex-grow ${isHomePage ? "" : "pt-10"}`}>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/films" element={<FilmsPage />} />
           <Route path="/shop" element={<ShopPage />} />
-          <Route path="/Fashion" element={<FashionPage />} />
           <Route path="/fashion" element={<ShopPage category="fashion" />} />
           <Route path="/music" element={<ShopPage category="music" />} />
         </Routes>
@@ -37,10 +36,3 @@ export default function App() {
     </Router>
   );
 }
-
-interface ShopPageProps {
-  category?: "fashion" | "music" | "books" | "objects";
-}
-
-// Minimal wrapper if needed, but ShopPage already handles category via search params.
-// I'll update ShopPage to handle both props and search params for flexibility.
