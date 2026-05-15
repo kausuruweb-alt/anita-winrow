@@ -5,6 +5,7 @@ import HomePage from "./pages/HomePage";
 import FilmsPage from "./pages/FilmsPage";
 import ShopPage from "./pages/ShopPage";
 import FashionPage from "./pages/FashionPage";
+import CategoryPage from "./pages/CategoryPage";
 
 function AppContent() {
   const location = useLocation();
@@ -18,6 +19,7 @@ function AppContent() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/films" element={<FilmsPage />} />
+          <Route path="/category/:slug" element={<CategoryPage />} />
           <Route path="/shop" element={<ShopPage />} />
           <Route path="/fashion" element={<ShopPage category="fashion" />} />
           <Route path="/music" element={<ShopPage category="music" />} />
