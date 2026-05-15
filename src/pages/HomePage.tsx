@@ -1,5 +1,8 @@
 import Hero from "../components/Hero";
 import ContentGrid from "../components/ContentGrid";
+import heroImage1 from "../../Images/1.jpeg";
+import heroImage2 from "../../Images/2.jpeg";
+import heroImage3 from "../../Images/3.jpeg";
 
 const CATEGORIES = [
   {
@@ -80,17 +83,17 @@ const HERO_SLIDES = [
   {
     title: "",
     subtitle: "",
-    image: "/anita-winrow/Images/1.jpeg",
+    image: heroImage1,
   },
   {
     title: "",
     subtitle: "",
-    image: "/anita-winrow/Images/2.jpeg",
+    image: heroImage2,
   },
   {
     title: "",
     subtitle: "",
-    image: "/anita-winrow/Images/3.jpeg",
+    image: heroImage3,
   },
 ];
 
