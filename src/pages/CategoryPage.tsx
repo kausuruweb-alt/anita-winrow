@@ -24,6 +24,11 @@ type CategoryContent = {
   detailLabel: string;
   detailText: string;
   videos?: CategoryVideo[];
+  clients?: {
+    title: string;
+    columns: string[][];
+  };
+  isContactPage?: boolean;
 };
 
 const CATEGORY_CONTENT: Record<CategoryKey, CategoryContent> = {
@@ -58,7 +63,8 @@ const CATEGORY_CONTENT: Record<CategoryKey, CategoryContent> = {
       },
       {
         title: "Commercial Mood Board",
-        description: "A reference reel for lighting, camera movement, and rhythm.",
+        description:
+          "A reference reel for lighting, camera movement, and rhythm.",
         videoId: "kJQP7kiw5Fk",
       },
       {
@@ -86,11 +92,12 @@ const CATEGORY_CONTENT: Record<CategoryKey, CategoryContent> = {
   },
   bio: {
     title: "Bio",
-    intro: "A short profile and background summary.",
+    intro: "Anita Winrow is a professional make-up artist and hair stylist.",
     heroImage:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1600&auto=format&fit=crop",
     detailLabel: "About",
-    detailText: "Creative direction across fashion, image-making, and screen work.",
+    detailText:
+      "From editorial to TV commercials and fashion to feature films, Anita has been working in the industry for ten years. 2012 sees Anita not only continuing her commercial work but also providing hair and make-up for the Olympics 2012.",
   },
   clients: {
     title: "Clients",
@@ -99,14 +106,54 @@ const CATEGORY_CONTENT: Record<CategoryKey, CategoryContent> = {
       "https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1600&auto=format&fit=crop",
     detailLabel: "Selected Work",
     detailText: "Editorial, campaign, and moving-image partnerships.",
+    clients: {
+      title: "Clients",
+      columns: [
+        [
+          "Olympics 2012",
+          "Waitrose",
+          "Morrisons",
+          "Jordans Cereal",
+          "Heart FM",
+          "T-Mobile",
+          "Terrence Higgins Trust",
+          "Mail On Sunday",
+          "Chivas Whisky",
+          "CLS Sofas",
+        ],
+        [
+          "House of Fraser",
+          "Debenhams",
+          "George",
+          "Jasper Conran",
+          "Fred Perry",
+          "Star Julien Macdonald",
+          "Heston Blumenthal",
+          "Charles Worthington",
+        ],
+        [
+          "Top Shop",
+          "New Look",
+          "Dorothy Perkins",
+          "Lipsy",
+          "Mantaray",
+          "Brand Alley",
+          "Agent Provocateur",
+          "Dynasty Clothing",
+          "Ben Sherman",
+          "Speedo",
+        ],
+      ],
+    },
   },
   "contact-data": {
-    title: "Contact Data",
-    intro: "Booking and inquiry information.",
+    title: "Contact Anita",
+    intro: "Get in touch for inquiries and professional bookings.",
     heroImage:
       "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1600&auto=format&fit=crop",
     detailLabel: "Contact",
-    detailText: "Email, representation, and project inquiries can be added here.",
+    detailText: "Reach out via phone, email, or the contact form below.",
+    isContactPage: true,
   },
 };
 
@@ -124,7 +171,9 @@ export default function CategoryPage() {
       <section className="px-4 md:px-6 pb-16 border-b border-black">
         <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-8 items-end">
           <div>
-            <span className="font-display text-[10px] font-bold uppercase tracking-[0.2em] opacity-40 block mb-4">Category</span>
+            <span className="font-display text-[10px] font-bold uppercase tracking-[0.2em] opacity-40 block mb-4">
+              Category
+            </span>
             <h1 className="text-6xl md:text-9xl font-display font-black tracking-tighter uppercase leading-[0.85]">
               {content.title}
             </h1>
@@ -133,7 +182,9 @@ export default function CategoryPage() {
             </p>
           </div>
           <div className="lg:text-right">
-            <div className="font-display text-[10px] font-bold uppercase tracking-[0.2em] opacity-40 mb-2">{content.detailLabel}</div>
+            <div className="font-display text-[10px] font-bold uppercase tracking-[0.2em] opacity-40 mb-2">
+              {content.detailLabel}
+            </div>
             <p className="max-w-xl lg:ml-auto font-serif italic text-base md:text-lg opacity-70">
               {content.detailText}
             </p>
@@ -152,11 +203,150 @@ export default function CategoryPage() {
         </div>
       </section>
 
-      {content.videos ? (
+      {content.isContactPage ? (
+        <section className="bg-[#5a5a5a] text-white px-4 md:px-6 py-16 md:py-20">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-3xl md:text-5xl font-display font-black tracking-tighter uppercase mb-12">
+              Contact Anita
+            </h2>
+
+            <div className="mb-12">
+              <p className="text-lg md:text-xl font-serif italic mb-6 opacity-90">
+                mobile: +44 (0) 7947470046
+              </p>
+              <p className="text-lg md:text-xl font-serif italic opacity-90">
+                email: info@anitawinrow.com
+              </p>
+            </div>
+
+            <div className="border-t border-white/30 pt-12">
+              <h3 className="text-2xl md:text-3xl font-display font-black tracking-tighter uppercase mb-8">
+                Please leave your contact details
+              </h3>
+
+              <form className="space-y-6">
+                <div>
+                  <label className="block text-sm font-display font-bold uppercase tracking-widest mb-3">
+                    First name
+                  </label>
+                  <input
+                    type="text"
+                    className="w-full px-4 py-3 bg-white text-black font-serif text-base focus:outline-none"
+                    placeholder=""
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-display font-bold uppercase tracking-widest mb-3">
+                    Last name
+                  </label>
+                  <input
+                    type="text"
+                    className="w-full px-4 py-3 bg-white text-black font-serif text-base focus:outline-none"
+                    placeholder=""
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-display font-bold uppercase tracking-widest mb-3">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    className="w-full px-4 py-3 bg-white text-black font-serif text-base focus:outline-none"
+                    placeholder=""
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  className="mt-8 px-6 py-3 bg-white text-black font-display font-bold uppercase tracking-widest hover:bg-white/80 transition-colors"
+                >
+                  Subscribe
+                </button>
+              </form>
+            </div>
+          </div>
+        </section>
+      ) : content.clients ? (
+        <section className="bg-[#4a4a4a] text-white px-4 md:px-6 py-14 md:py-16">
+          <div className="grid grid-cols-1 lg:grid-cols-[1.6fr_1fr] gap-14 lg:gap-20">
+            <div>
+              <h2 className="text-3xl md:text-5xl font-display font-black tracking-tighter uppercase mb-8">
+                {content.clients.title}
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
+                {content.clients.columns.map((column, columnIndex) => (
+                  <ul
+                    key={`${content.title}-${columnIndex}`}
+                    className="space-y-2 md:space-y-3 text-lg md:text-xl leading-tight"
+                  >
+                    {column.map((item) => (
+                      <li key={item} className="font-medium">
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                ))}
+              </div>
+            </div>
+
+            <div className="space-y-12">
+              <div>
+                <h3 className="text-3xl md:text-5xl font-display font-black tracking-tighter uppercase mb-8">
+                  Film Directors
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2 text-lg md:text-xl leading-tight">
+                  {[
+                    "Nicolas Roeg",
+                    "Richard Dale",
+                    "Tom Green",
+                    "Andrew Goth",
+                    "Alan Friel",
+                  ].map((name) => (
+                    <div key={name} className="font-medium">
+                      {name}
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-3xl md:text-5xl font-display font-black tracking-tighter uppercase mb-8">
+                  TV Commercials
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-2 text-lg md:text-xl leading-tight">
+                  {[
+                    "Burger King",
+                    "Tesco",
+                    "Jordans Cereal",
+                    "Activia Danone",
+                    "Mail On Sunday",
+                    "Chivas Whisky",
+                    "Terrence Higgins Trust",
+                    "Morrisons",
+                    "Heart FM",
+                    "CLS Sofas",
+                    "T-Mobile",
+                  ].map((name) => (
+                    <div key={name} className="font-medium">
+                      {name}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      ) : content.videos ? (
         <section className="px-4 md:px-6 py-16">
           <div className="flex items-end justify-between mb-10 border-t border-black pt-8">
-            <h2 className="text-3xl md:text-5xl font-display font-black tracking-tighter uppercase">YouTube Videos</h2>
-            <span className="font-display text-[10px] font-bold uppercase tracking-[0.2em] opacity-40">Film topics</span>
+            <h2 className="text-3xl md:text-5xl font-display font-black tracking-tighter uppercase">
+              YouTube Videos
+            </h2>
+            <span className="font-display text-[10px] font-bold uppercase tracking-[0.2em] opacity-40">
+              Film topics
+            </span>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -193,13 +383,17 @@ export default function CategoryPage() {
         <section className="px-4 md:px-6 py-16">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 border-t border-black pt-8">
             <div>
-              <div className="font-display text-[10px] font-bold uppercase tracking-[0.2em] opacity-40 mb-3">Overview</div>
+              <div className="font-display text-[10px] font-bold uppercase tracking-[0.2em] opacity-40 mb-3">
+                Overview
+              </div>
               <p className="font-serif italic text-lg md:text-xl opacity-70 max-w-xl">
                 {content.detailText}
               </p>
             </div>
             <div className="bg-black text-white p-8 md:p-10">
-              <div className="font-display text-[10px] font-bold uppercase tracking-[0.2em] opacity-50 mb-4">Navigation</div>
+              <div className="font-display text-[10px] font-bold uppercase tracking-[0.2em] opacity-50 mb-4">
+                Navigation
+              </div>
               <p className="font-display text-3xl md:text-5xl font-black tracking-tighter uppercase leading-none">
                 Explore related projects and category archives.
               </p>

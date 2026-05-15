@@ -1,10 +1,21 @@
 import * as React from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Search, ShoppingBag, Menu, X, ChevronRight } from "lucide-react";
+import { Search, Menu, X, ChevronRight } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 
-export default function Header(): JSX.Element {
+const MENU_CATEGORIES = [
+  { label: "Fashion", to: "/category/fashion" },
+  { label: "Beauty", to: "/category/beauty" },
+  { label: "Film & Commercial", to: "/category/film-commercial" },
+  { label: "Advertising", to: "/category/advertising" },
+  { label: "Music", to: "/category/music" },
+  { label: "Bio", to: "/category/bio" },
+  { label: "Clients", to: "/category/clients" },
+  { label: "Contact Data", to: "/category/contact-data" },
+];
+
+export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -17,8 +28,6 @@ export default function Header(): JSX.Element {
   const textColor = isHomePage && !isScrolled ? "text-white" : "text-black";
 
   const headerBg = isHomePage && !isScrolled ? "bg-transparent" : "bg-white";
-
-  const dotColor = isHomePage && !isScrolled ? "bg-white" : "bg-black";
 
   const getBreadcrumb = () => {
     const path = location.pathname.split("/").filter(Boolean)[0];
@@ -51,14 +60,24 @@ export default function Header(): JSX.Element {
 
   return (
     <>
-      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${headerBg} py-8`} id="main-header">
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${headerBg} py-8`}
+        id="main-header"
+      >
         <nav className="mx-auto px-6 md:px-12 flex items-center justify-between">
           {/* Left Nav / Sidebar Toggle */}
           <div className="flex items-center space-x-6">
-            <button className="group flex items-center space-x-2 p-2 hover:opacity-50 transition-opacity" onClick={() => setIsMobileMenuOpen(true)}>
+            <button
+              className="group flex items-center space-x-2 p-2 hover:opacity-50 transition-opacity"
+              onClick={() => setIsMobileMenuOpen(true)}
+            >
               <Menu size={20} strokeWidth={2.5} className={textColor} />
 
-              <span className={`hidden md:block font-display text-xs font-bold uppercase tracking-widest ${textColor}`}>Menu</span>
+              <span
+                className={`hidden md:block font-display text-xs font-bold uppercase tracking-widest ${textColor}`}
+              >
+                Menu
+              </span>
             </button>
 
             <div className="hidden md:block">{getBreadcrumb()}</div>
@@ -66,7 +85,11 @@ export default function Header(): JSX.Element {
 
           {/* Logo */}
           <Link to="/" className="flex flex-col items-center group">
-            <div className={`font-display text-2xl md:text-4xl font-black tracking-tighter leading-none font-serif ${textColor}`}>ANITA WINROW</div>
+            <div
+              className={`font-display text-2xl md:text-4xl font-black tracking-tighter leading-none font-serif ${textColor}`}
+            >
+              ANITA WINROW
+            </div>
           </Link>
 
           {/* Right Nav */}
@@ -105,9 +128,14 @@ export default function Header(): JSX.Element {
             >
               {/* Header */}
               <div className="p-6 md:p-8 flex justify-between items-center border-b border-black">
-                <div className="font-display text-2xl font-black tracking-tighter">Anita Winrow</div>
+                <div className="font-display text-2xl font-black tracking-tighter">
+                  Anita Winrow
+                </div>
 
-                <button onClick={() => setIsMobileMenuOpen(false)} className="p-2 hover:opacity-50 transition-opacity">
+                <button
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="p-2 hover:opacity-50 transition-opacity"
+                >
                   <X size={24} strokeWidth={2.5} />
                 </button>
               </div>
@@ -115,75 +143,25 @@ export default function Header(): JSX.Element {
               {/* Menu */}
               <div className="grow overflow-y-auto p-8 md:p-12">
                 <nav className="flex flex-col space-y-8">
-                  {/* Main */}
                   <div className="space-y-4">
-                    <span className="font-display text-[10px] font-bold uppercase tracking-[0.2em] opacity-40">Main</span>
+                    <span className="font-display text-[10px] font-bold uppercase tracking-[0.2em] opacity-40">
+                      Categories
+                    </span>
 
-                    <Link
-                      to="/films"
-                      className="block text-4xl md:text-5xl font-display font-black tracking-tighter uppercase hover:translate-x-2 transition-transform"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      Films
-                    </Link>
-
-                    <Link
-                      to="/Fashion"
-                      className="block text-4xl md:text-5xl font-display font-black tracking-tighter uppercase hover:translate-x-2 transition-transform"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      Fashion
-                    </Link>
-                  </div>
-
-                  {/* Shop */}
-                  <div className="space-y-4 pt-8 border-t border-black/10">
-                    <span className="font-display text-[10px] font-bold uppercase tracking-[0.2em] opacity-40">Shop</span>
-
-                    <Link
-                      to="/shop"
-                      className="block text-3xl font-display font-black tracking-tighter uppercase hover:translate-x-2 transition-transform"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      Shop All
-                    </Link>
-
-                    <Link
-                      to="/shop?category=fashion"
-                      className="block text-3xl font-display font-black tracking-tighter uppercase hover:translate-x-2 transition-transform"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      Fashion
-                    </Link>
-
-                    <Link
-                      to="/shop?category=music"
-                      className="block text-3xl font-display font-black tracking-tighter uppercase hover:translate-x-2 transition-transform"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      Music
-                    </Link>
-
-                    <Link
-                      to="/shop?category=books"
-                      className="block text-3xl font-display font-black tracking-tighter uppercase hover:translate-x-2 transition-transform"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      Books
-                    </Link>
+                    <div className="grid grid-cols-1 gap-4">
+                      {MENU_CATEGORIES.map((category) => (
+                        <Link
+                          key={category.to}
+                          to={category.to}
+                          className="block text-3xl md:text-4xl font-display font-black tracking-tighter uppercase hover:translate-x-2 transition-transform"
+                          onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                          {category.label}
+                        </Link>
+                      ))}
+                    </div>
                   </div>
                 </nav>
-              </div>
-
-              {/* Footer */}
-              <div className="p-8 border-t border-black bg-black text-white">
-                <div className="flex justify-between items-center">
-                  <span className="font-display text-xs font-bold uppercase tracking-widest">Anita Winrow Member?</span>
-
-                  <button className="border border-white px-4 py-2 text-[10px] font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-colors">
-                    Login
-                  </button>
-                </div>
               </div>
             </motion.div>
           </>
