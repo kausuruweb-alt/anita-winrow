@@ -15,6 +15,7 @@ type CategoryVideo = {
   title: string;
   description: string;
   videoId: string;
+  source?: "youtube" | "vimeo";
 };
 
 type CategoryContent = {
@@ -57,20 +58,25 @@ const CATEGORY_CONTENT: Record<CategoryKey, CategoryContent> = {
     detailText: "Short films, commercials, and visual storytelling.",
     videos: [
       {
-        title: "Cinematic Campaign Direction",
-        description: "Visual pacing and motion language for branded stories.",
-        videoId: "M7lc1UVf-VE",
+        title: "Mandarin Oriental TwoCrown World",
+        description: "Premium luxury brand storytelling and visual direction.",
+        videoId: "VKSXNz4vLYk",
       },
       {
-        title: "Commercial Mood Board",
-        description:
-          "A reference reel for lighting, camera movement, and rhythm.",
-        videoId: "kJQP7kiw5Fk",
+        title: "Mandarin Oriental Bodrum Turkey",
+        description: "Luxury destination cinematography and visual narrative.",
+        videoId: "U8s6Ccqceyw",
       },
       {
-        title: "Film Craft References",
-        description: "Framing studies for narrative and commercial projects.",
-        videoId: "dQw4w9WgXcQ",
+        title: "Mandarin Oriental Paris",
+        description: "Elegant luxury hotel showcase and branded storytelling.",
+        videoId: "IPYr6JkRBmc",
+      },
+      {
+        title: "Cake",
+        description: "Visual and motion design exploration.",
+        videoId: "270902414",
+        source: "vimeo",
       },
     ],
   },
@@ -359,13 +365,23 @@ export default function CategoryPage() {
                 className="group"
               >
                 <div className="aspect-video overflow-hidden border border-black bg-black">
-                  <iframe
-                    className="h-full w-full"
-                    src={`https://www.youtube.com/embed/${video.videoId}`}
-                    title={video.title}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowFullScreen
-                  />
+                  {video.source === "vimeo" ? (
+                    <iframe
+                      className="h-full w-full"
+                      src={`https://player.vimeo.com/video/${video.videoId}`}
+                      title={video.title}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                    />
+                  ) : (
+                    <iframe
+                      className="h-full w-full"
+                      src={`https://www.youtube.com/embed/${video.videoId}`}
+                      title={video.title}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                    />
+                  )}
                 </div>
                 <div className="pt-4">
                   <h3 className="text-2xl font-display font-black tracking-tighter uppercase leading-tight mb-2 group-hover:underline">
