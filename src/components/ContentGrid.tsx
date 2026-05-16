@@ -48,7 +48,7 @@ export default function ContentGrid({ sectionTitle, items }: ContentGridProps) {
               aria-label={item.title}
               className="flex h-full flex-col bg-white group-hover:bg-black group-hover:text-white transition-colors duration-300"
             >
-              <div className="aspect-[2/3] overflow-hidden grayscale group-hover:grayscale-0 hover:grayscale-0 focus-within:grayscale-0 active:grayscale-0 transition-all duration-700">
+              <div className="aspect-[2/3] overflow-hidden md:grayscale group-hover:grayscale-0 hover:grayscale-0 focus-within:grayscale-0 active:grayscale-0 transition-all duration-700">
                 <img
                   src={item.image}
                   alt={item.title}
